@@ -55,5 +55,25 @@ client.on("interactionCreate", async interaction => {
   }
 
 });
+const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 
+client.on("messageCreate", async message => {
+
+  if (message.content === "!fila") {
+
+    const botao = new ButtonBuilder()
+      .setCustomId("entrar_fila")
+      .setLabel("Entrar na fila")
+      .setStyle(ButtonStyle.Success);
+
+    const row = new ActionRowBuilder().addComponents(botao);
+
+    message.channel.send({
+      content: "Clique no botão para entrar na fila.",
+      components: [row]
+    });
+
+  }
+
+});
 client.login(process.env.TOKEN);
